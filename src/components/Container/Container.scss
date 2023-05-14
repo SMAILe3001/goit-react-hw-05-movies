@@ -1,0 +1,25 @@
+$mobile-width: 480px;
+$table-width: 768px;
+$desktop-width: 1280px;
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 320px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+
+  @media (min-width: $mobile-width) {
+    width: $mobile-width;
+  }
+
+  @media (min-width: $table-width) {
+    width: $table-width;
+    padding: 32px;
+  }
+
+  @media (min-width: $desktop-width) {
+    width: $desktop-width;
+  }
+}

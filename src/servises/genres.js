@@ -19,3 +19,5 @@ export const genres = {
   10752: 'War',
   37: 'Western',
 };
+
+// https://api.themoviedb.org/3/genre/movie/list?api_key=432ccaf7113b52e993b924f1fb358945&language=en

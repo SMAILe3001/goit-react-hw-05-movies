@@ -7,7 +7,8 @@ const fetchFilms = async (params, page = 1) => {
       params: {
         page: page,
         api_key: API_KEY,
-        language: 'uk',
+        // language: 'uk',
+        language: 'en',
       },
     })
     .then(response => response.data);
