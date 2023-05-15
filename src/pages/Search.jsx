@@ -7,6 +7,7 @@ import FilmList from 'components/FilmList/FilmList';
 const Search = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchFilms, setSearchFilms] = useState('');
+  const [searchText, setSearchText] = useState('');
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -16,18 +17,20 @@ const Search = () => {
   const handelInputSubmit = e => {
     e.preventDefault();
 
-    setSearchFilms(query);
+    if (searchText === '') return;
+
+    setSearchParams({ query: searchText });
+    setSearchFilms(searchText);
   };
 
   const updataQueryString = e => {
-    setSearchParams(e.target.value === '' ? {} : { query: e.target.value });
+    setSearchText(e.target.value);
   };
 
   useEffect(() => {
-    const query2 = searchParams.get('query') ?? '';
-    if (query2 === '') return;
-    setSearchFilms(query2);
-  }, []);
+    if (query === '') return;
+    setSearchFilms(query);
+  }, [query]);
 
   useEffect(() => {
     if (searchFilms === '') return;
@@ -61,7 +64,7 @@ const Search = () => {
             }}
             type="text"
             onChange={updataQueryString}
-            value={query}
+            value={searchText}
           />
         </label>
         <button type="submit">search</button>
