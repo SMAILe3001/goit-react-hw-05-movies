@@ -11,17 +11,23 @@ const Search = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const q = searchParams.get('q') ?? '';
+  const query = searchParams.get('query') ?? '';
 
   const handelInputSubmit = e => {
     e.preventDefault();
 
-    setSearchFilms(q);
+    setSearchFilms(query);
   };
 
   const updataQueryString = e => {
-    setSearchParams(e.target.value === '' ? {} : { q: e.target.value });
+    setSearchParams(e.target.value === '' ? {} : { query: e.target.value });
   };
+
+  useEffect(() => {
+    const query2 = searchParams.get('query') ?? '';
+    if (query2 === '') return;
+    setSearchFilms(query2);
+  }, []);
 
   useEffect(() => {
     if (searchFilms === '') return;
@@ -55,7 +61,7 @@ const Search = () => {
             }}
             type="text"
             onChange={updataQueryString}
-            value={q}
+            value={query}
           />
         </label>
         <button type="submit">search</button>
