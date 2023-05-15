@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import fetchFilms from 'servises/servise';
 
-const Treiler = () => {
-  const [treilers, setTreiler] = useState([]);
+const Trailer = () => {
+  const [trailers, setTrailer] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const { filmId } = useParams();
@@ -13,8 +13,8 @@ const Treiler = () => {
     const searchData = async () => {
       try {
         setIsLoading(true);
-        const treilers = await fetchFilms(`movie/${filmId}/videos`);
-        setTreiler([...treilers.results]);
+        const trailers = await fetchFilms(`movie/${filmId}/videos`);
+        setTrailer([...trailers.results]);
       } catch (error) {
         setError(true);
         console.log(error);
@@ -27,24 +27,27 @@ const Treiler = () => {
 
   return (
     <>
-      <div>
-        {treilers
-          .filter(({ type }) => type === 'Trailer')
-          .map(treiler => (
-            <iframe
-              key={treiler.id}
-              width="560"
-              height="315"
-              src={`https://www.youtube.com/embed/${treiler.key}`}
-              title={treiler.name}
-              allowfullscreen
-            ></iframe>
-          ))}
-      </div>
+      {trailers?.length !== 0 ? (
+        <div>
+          {trailers
+            .filter(({ type }) => type === 'Trailer')
+            .map(({ id, key, name }) => (
+              <iframe
+                key={id}
+                width="560"
+                height="315"
+                src={`https://www.youtube.com/embed/${key}`}
+                title={name}
+              ></iframe>
+            ))}
+        </div>
+      ) : (
+        <p>Trailer unavailable</p>
+      )}
       {isLoading && <h2>We are loading reviews</h2>}
       {error && <h2>Щось пішло не так</h2>}
     </>
   );
 };
 
-export default Treiler;
+export default Trailer;

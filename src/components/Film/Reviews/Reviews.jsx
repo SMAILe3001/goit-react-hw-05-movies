@@ -40,7 +40,7 @@ const Reviews = () => {
           })}
         </ul>
       ) : (
-        'There are no reviews'
+        <p>There are no reviews</p>
       )}
       {isLoading && <h2>We are loading reviews</h2>}
       {error && <h2>Щось пішло не так</h2>}

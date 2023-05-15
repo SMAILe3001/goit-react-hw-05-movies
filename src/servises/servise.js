@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import { BASE_URL, API_KEY } from './api';
 
@@ -15,3 +16,9 @@ const fetchFilms = async (parameters, query = '', page = 1) => {
 };
 
 export default fetchFilms;
+
+fetchFilms.propType = {
+  parameters: PropTypes.string,
+  query: PropTypes.string,
+  page: PropTypes.number,
+};

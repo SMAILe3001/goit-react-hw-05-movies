@@ -36,7 +36,7 @@ const Film = () => {
   return (
     <Container>
       <Link to={backLinkLocationRef.current}>
-        <Button>назад</Button>
+        <Button>back</Button>
       </Link>
       <div className="film_info">
         {poster_path && (
@@ -66,8 +66,8 @@ const Film = () => {
               </Link>
             </li>
             <li>
-              <Link to="treiler">
-                <Button>Treiler</Button>
+              <Link to="trailer">
+                <Button>Trailer</Button>
               </Link>
             </li>
           </ul>

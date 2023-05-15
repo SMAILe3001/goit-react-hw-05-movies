@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { genres } from 'servises/genres';
 import './FilmList.scss';
 import defaultImages from '../../img/onImages.png';
@@ -35,3 +36,7 @@ const FilmList = ({ data }) => {
 };
 
 export default FilmList;
+
+FilmList.propType = {
+  data: PropTypes.array,
+};

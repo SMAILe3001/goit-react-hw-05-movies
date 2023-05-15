@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import './Button.scss';
 
-const Button = ({ onClick, children, current }) => {
+const Button = ({ onClick, children }) => {
   return (
     <button className="button" onClick={onClick} type="button">
       {children}
@@ -9,3 +10,8 @@ const Button = ({ onClick, children, current }) => {
 };
 
 export default Button;
+
+Button.propType = {
+  onClick: PropTypes.func,
+  children: PropTypes.object,
+};

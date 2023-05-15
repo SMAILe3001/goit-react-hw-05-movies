@@ -5,7 +5,7 @@ import defaultImages from '../../../img/onImages.png';
 import './Cast.scss';
 
 const Cast = () => {
-  const [infoFilm, setInfoFilm] = useState({});
+  const [infoFilm, setInfoFilm] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const { filmId } = useParams();
@@ -16,7 +16,7 @@ const Cast = () => {
       try {
         setIsLoading(true);
         const infoFilm = await fetchFilms(`movie/${filmId}/credits`);
-        setInfoFilm({ ...infoFilm });
+        setInfoFilm([...infoFilm.cast]);
       } catch (error) {
         setError(true);
         console.log(error);
@@ -27,13 +27,11 @@ const Cast = () => {
     searchData();
   }, [filmId]);
 
-  const { cast } = infoFilm;
-
   return (
     <div>
-      {cast ? (
+      {infoFilm?.length ? (
         <ul className="profile_list">
-          {cast.map(({ cast_id, profile_path, name, character }) => {
+          {infoFilm.map(({ cast_id, profile_path, name, character }) => {
             return (
               <li className="profile_item" key={cast_id}>
                 <img
@@ -53,7 +51,7 @@ const Cast = () => {
           })}
         </ul>
       ) : (
-        'There is no information about the actors'
+        <p>There is no information about the actors</p>
       )}
       {isLoading && <h2>Loading information about the actors</h2>}
       {error && <h2>Щось пішло не так</h2>}
