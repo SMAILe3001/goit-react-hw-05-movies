@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/216.662708d0.chunk.js","mappings":"0JAEA,UAFiB,kBAAM,oLAAN,C","sources":["components/NotFound/NotFound.jsx"],"sourcesContent":["const NotFound = () => <div>О господи, і куди ти це тицьнув</div>;\n\nexport default NotFound;\n"],"names":[],"sourceRoot":""}
