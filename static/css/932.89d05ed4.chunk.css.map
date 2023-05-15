@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/932.89d05ed4.chunk.css","mappings":"AAAA,cACE,aACA,eACA,QAGF,cACE,sBAGF,gBACE","sources":["components/Film/Cast/Cast.scss"],"sourcesContent":[".profile_list {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 4px;\n}\n\n.profile_item {\n  width: calc((100% - 4px * 3) / 4);\n}\n\n.profile_images {\n  width: 100%;\n}\n"],"names":[],"sourceRoot":""}
