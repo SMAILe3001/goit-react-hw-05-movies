@@ -1,5 +1,6 @@
-import Container from 'components/Container/Container';
+import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+import Container from 'components/Container/Container';
 
 const Leyout = () => {
   return (
@@ -7,7 +8,7 @@ const Leyout = () => {
       <header>
         <Container>
           <nav>
-            <ul>
+            <ul style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
               <li>
                 <NavLink to="/">Home</NavLink>
               </li>
@@ -19,7 +20,9 @@ const Leyout = () => {
         </Container>
       </header>
       <main>
-        <Outlet />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet />
+        </Suspense>
       </main>
     </>
   );

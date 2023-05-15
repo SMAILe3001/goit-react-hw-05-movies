@@ -1,8 +1,8 @@
+import { useState, useEffect } from 'react';
+import fetchFilms from 'servises/servise';
 import Button from 'components/Button/Button';
 import Container from 'components/Container/Container';
 import FilmList from 'components/FilmList/FilmList';
-import { useState, useEffect } from 'react';
-import fetchFilms from 'servises/servise';
 
 const Home = () => {
   const [topFilms, setTopFilms] = useState('day');

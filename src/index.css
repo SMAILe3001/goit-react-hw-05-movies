@@ -24,3 +24,12 @@ ul {
 a {
   text-decoration: none;
 }
+
+.active {
+  border-bottom: 4px solid #ff0000;
+  border-radius: 4px;
+}
+
+h2 {
+  margin-top: 0px;
+}

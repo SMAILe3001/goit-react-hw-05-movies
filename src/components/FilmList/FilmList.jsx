@@ -1,17 +1,24 @@
+import { Link, useLocation } from 'react-router-dom';
 import { genres } from 'servises/genres';
 import './FilmList.scss';
-import { Link } from 'react-router-dom';
+import defaultImages from '../../img/onImages.png';
 
 const FilmList = ({ data }) => {
+  const location = useLocation();
+
   return (
     <ul className="gallery-markup  list">
       {data.map(({ id, poster_path, title, genre_ids, original_title }) => (
         <li key={id} className="film-card">
-          <Link to={`/info-film/${id}`}>
+          <Link to={`/info-film/${id}`} state={{ from: location }}>
             <img
               loading="lazy"
               className="film-poster"
-              src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+              src={
+                poster_path
+                  ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                  : defaultImages
+              }
               alt={original_title}
             />
             <h2 className="film-title">{title}</h2>

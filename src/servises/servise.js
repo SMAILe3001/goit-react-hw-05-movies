@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { BASE_URL, API_KEY } from './api';
 
-const fetchFilms = async (params, page = 1) => {
+const fetchFilms = async (parameters, query = '', page = 1) => {
   return await axios
-    .get(`${BASE_URL}${params}`, {
+    .get(`${BASE_URL}${parameters}`, {
       params: {
         page: page,
         api_key: API_KEY,
-        // language: 'uk',
         language: 'en',
+        query: query,
       },
     })
     .then(response => response.data);

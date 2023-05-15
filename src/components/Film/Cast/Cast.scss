@@ -1,0 +1,13 @@
+.profile_list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.profile_item {
+  width: calc((100% - 4px * 3) / 4);
+}
+
+.profile_images {
+  width: 100%;
+}

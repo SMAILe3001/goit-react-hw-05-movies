@@ -1,14 +1,17 @@
-import { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
-import './Film.scss';
+import { Suspense, useEffect, useRef, useState } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import fetchFilms from 'servises/servise';
+import './Film.scss';
 import Container from 'components/Container/Container';
+import Button from 'components/Button/Button';
 
 const Film = () => {
   const [infoFilm, setInfoFilm] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
   const { filmId } = useParams();
+  const location = useLocation();
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
     if (!filmId) return;
@@ -32,6 +35,9 @@ const Film = () => {
 
   return (
     <Container>
+      <Link to={backLinkLocationRef.current}>
+        <Button>назад</Button>
+      </Link>
       <div className="film_info">
         {poster_path && (
           <img
@@ -41,7 +47,6 @@ const Film = () => {
             alt={original_title}
           />
         )}
-
         <div>
           <h2>{title}</h2>
           <p>User rating: {vote_average}</p>
@@ -49,15 +54,21 @@ const Film = () => {
           {overview ? <p>{overview}</p> : 'немає опису'}
           <h3>Genre/Genres</h3>
           {genres && <p>{genres.map(({ name }) => name).join(', ')}</p>}
-          <ul>
+          <ul style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
             <li>
-              <Link to="cast">Cast</Link>
+              <Link to="cast">
+                <Button>Cast</Button>
+              </Link>
             </li>
             <li>
-              <Link to="reviews">Reviews</Link>
+              <Link to="reviews">
+                <Button>Reviews</Button>
+              </Link>
             </li>
           </ul>
-          <Outlet />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Outlet />
+          </Suspense>
         </div>
       </div>
 

@@ -1,16 +1,19 @@
+import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Home from '../../pages/Home';
-import Film from 'components/Film/Film';
 import Leyout from 'components/Leyout/Leyout';
-import Cast from 'components/Film/Cast/Cast';
-import Reviews from 'components/Film/Reviews/Reviews';
+
+const Home = lazy(() => import('../../pages/Home'));
+const Search = lazy(() => import('../../pages/Search'));
+const Film = lazy(() => import('../Film/Film'));
+const Cast = lazy(() => import('../Film/Cast/Cast'));
+const Reviews = lazy(() => import('../Film/Reviews/Reviews'));
 
 export const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Leyout />}>
         <Route index element={<Home />} />
-        <Route path="/search" element={<div>Search</div>} />
+        <Route path="/search" element={<Search />} />
         <Route path="/info-film/:filmId" element={<Film />}>
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />

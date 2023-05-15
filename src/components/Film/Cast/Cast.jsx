@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import fetchFilms from 'servises/servise';
+import defaultImages from '../../../img/onImages.png';
+import './Cast.scss';
 
 const Cast = () => {
   const [infoFilm, setInfoFilm] = useState({});
@@ -24,28 +26,36 @@ const Cast = () => {
     };
     searchData();
   }, [filmId]);
+
+  const { cast } = infoFilm;
+
   return (
     <div>
-      {infoFilm.cast ? (
-        <ul>
-          {infoFilm.cast.map(actor => {
+      {cast ? (
+        <ul className="profile_list">
+          {cast.map(({ cast_id, profile_path, name, character }) => {
             return (
-              <li key={actor.cast_id}>
+              <li className="profile_item" key={cast_id}>
                 <img
+                  className="profile_images"
                   loading="lazy"
-                  src={`https://image.tmdb.org/t/p/w300${actor.profile_path}`}
-                  alt={actor.name}
+                  src={
+                    profile_path
+                      ? `https://image.tmdb.org/t/p/w300${profile_path}`
+                      : defaultImages
+                  }
+                  alt={name}
                 />
-                <h4>{actor.name}</h4>
-                <h4>In the role - {actor.character}</h4>
+                <h3>{name}</h3>
+                <span>In the role - {character}</span>
               </li>
             );
           })}
         </ul>
       ) : (
-        'нема інформації'
+        'There is no information about the actors'
       )}
-      {isLoading && <h2>We download movies</h2>}
+      {isLoading && <h2>Loading information about the actors</h2>}
       {error && <h2>Щось пішло не так</h2>}
     </div>
   );

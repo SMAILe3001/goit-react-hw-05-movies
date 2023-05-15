@@ -27,19 +27,22 @@ const Reviews = () => {
 
   return (
     <>
-      {infoFilm.results && (
+      {infoFilm.results?.length ? (
         <ul>
-          {infoFilm.results.map(review => {
+          {infoFilm.results.map(({ id, author, content }) => {
             return (
-              <li key={review.id}>
-                <h4>{review.author}</h4>
-                <p>{review.content}</p>
+              <li key={id}>
+                <p>
+                  <b>{author}</b> - "{content}"
+                </p>
               </li>
             );
           })}
         </ul>
+      ) : (
+        'There are no reviews'
       )}
-      {isLoading && <h2>We download movies</h2>}
+      {isLoading && <h2>We are loading reviews</h2>}
       {error && <h2>Щось пішло не так</h2>}
     </>
   );
