@@ -65,6 +65,11 @@ const Film = () => {
                 <Button>Reviews</Button>
               </Link>
             </li>
+            <li>
+              <Link to="treiler">
+                <Button>Treiler</Button>
+              </Link>
+            </li>
           </ul>
           <Suspense fallback={<div>Loading...</div>}>
             <Outlet />
