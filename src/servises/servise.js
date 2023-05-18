@@ -8,7 +8,7 @@ const fetchFilms = async (parameters, query = '', page = 1) => {
       params: {
         page: page,
         api_key: API_KEY,
-        language: 'en',
+        language: 'uk',
         query: query,
       },
     })
